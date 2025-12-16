@@ -1,25 +1,44 @@
-vim.keymap.set("n", "<leader>e", ":Ex<CR>", { desc = "Open Ex" } )
-vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true, silent = true }) -- write (already in normal mode)
-vim.keymap.set("i", "<C-s>", "<C-c>:w<CR>", { noremap = true, silent = true }) --exit insert mode and write
+local map = vim.keymap.set
 
----- Move lines ----
--- Normal mode line movement
-vim.keymap.set("n", "<A-j>", ":m +1<CR>==") -- Move current line down one position
-vim.keymap.set("n", "<A-k>", ":m -2<CR>==") -- Move current line up one position
+-- better up/down
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
--- Visual mode line movement (works on selected blocks and current line)
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- Move down one position
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv") -- Move up one position
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
----- End of move lines ----
+-- Move to window using the <ctrl> hjkl keys
+map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
-vim.keymap.set("v", "<leader>y", '"+y') -- yank to clipboard
-vim.keymap.set("i", "<C-b>", "<C-r>\"", { noremap = true, silent = true }) -- Paste from yank buffer in insert mode
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
--- Black hole
-vim.keymap.set("v", "x", '"_x', { desc = "Cut selection to black hole" })
-vim.keymap.set("i", "<C-x>", '<C-o>"_dd', { desc = "Cut whole line to black hole (insert)" })
-vim.keymap.set("n", "<C-x>", '"_dd', { desc = "Cut whole line to black hole (normal)" })
+-- Move Lines
+map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste over selection without losing yank" }) -- greatest remap ever (paste over and throw the selected to void)
+map("n", "<leader>e", ":Ex<CR>", { desc = "Open Ex" })
+map("n", "<C-s>", ":w<CR>", { noremap = true, silent = true, desc = "Write (normal mode)" })
+map("i", "<C-s>", "<C-c>:w<CR>", { noremap = true, silent = true, desc = "Exit insert and write" })
+
+-- Clipboard operations
+map("v", "<leader>y", '"+y', { desc = "Yank to clipboard" })
+map("i", "<C-b>", "<C-r>\"", { noremap = true, silent = true, desc = "Paste from yank buffer" })
+
+-- Black hole operations
+map("v", "x", '"_x', { desc = "Cut selection to black hole" })
+map("i", "<C-x>", '<C-o>"_dd', { desc = "Cut whole line to black hole (insert)" })
+map("n", "<C-x>", '"_dd', { desc = "Cut whole line to black hole (normal)" })
+-- Paste from yanked without overwriting it
+map("x", "<leader>p", '"_dP', { desc = "Paste over selection without losing yank" })
+-- Paste from system clipboard without overwriting it (Visual Mode)
+map("x", "<leader>v", '"_dP', { desc = "Paste from clipboard without overwriting" })
