@@ -21,6 +21,10 @@ return {
     config = function()
         local cmp = require("cmp")
         local luasnip = require("luasnip")
+        
+        -- Load custom snippets
+        require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath("config") .. "/lua/snippets" })
+        
         cmp.setup({
             snippet = {
                 expand = function(args)
@@ -67,11 +71,11 @@ return {
                 end, { "i", "s" }),
             }),
             sources = cmp.config.sources({
-                { name = "nvim_lsp" }, -- LSP
-                { name = "luasnip" },  -- Snippets
-                { name = "path" },     -- File paths
+                { name = "nvim_lsp", priority = 1000 }, -- LSP
+                { name = "luasnip", priority = 750 },  -- Snippets
+                { name = "path", priority = 500 },     -- File paths
             }, {
-                { name = "buffer" },   -- Text from current buffer
+                { name = "buffer", priority = 250 },   -- Text from current buffer
             }),
             window = {
                 completion = {
@@ -114,9 +118,14 @@ return {
                         end
                     end
                     
-                    -- Show only the kind (Field, Function, etc.)
-                    -- Remove the menu to reduce clutter
-                    vim_item.menu = nil
+                    -- Add source name to show where completion comes from
+                    local source_names = {
+                        nvim_lsp = "[LSP]",
+                        luasnip = "[Snip]",
+                        buffer = "[Buf]",
+                        path = "[Path]",
+                    }
+                    vim_item.menu = source_names[entry.source.name]
                     return vim_item
                 end
             },
