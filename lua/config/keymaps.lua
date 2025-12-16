@@ -42,3 +42,20 @@ map("n", "<C-x>", '"_dd', { desc = "Cut whole line to black hole (normal)" })
 map("x", "<leader>p", '"_dP', { desc = "Paste over selection without losing yank" })
 -- Paste from system clipboard without overwriting it (Visual Mode)
 map("x", "<leader>v", '"_dP', { desc = "Paste from clipboard without overwriting" })
+
+-- clear search highlight on escape (but keep default esc behavior)
+map({ "i", "n", "s" }, "<esc>", function()
+  -- Clear search highlight if there is one
+  if vim.v.hlsearch == 1 then
+    vim.cmd("noh")
+  end
+  
+  -- Stop snippet if in snippet mode
+  if lazyvim and lazyvim.cmp and lazyvim.cmp.actions then
+    lazyvim.cmp.actions.snippet_stop()
+  end
+  
+  -- Return the escape key to continue normal behavior
+  -- This allows telescope, insert mode exit, etc. to work
+  return "<esc>"
+end, { expr = true, desc = "escape and clear hlsearch" })-- clear search highlight on escape
