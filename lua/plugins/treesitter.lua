@@ -6,7 +6,8 @@ return {
   opts = {
     indent = { enable = true },
     highlight = { enable = true },
-    ensure_installed = {
+     autotag = { enable = true },
+ ensure_installed = {
       "bash",
       "c",
       "diff",
