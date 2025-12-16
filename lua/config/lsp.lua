@@ -26,3 +26,6 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" }
 -- Navigation
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "gr", require('telescope.builtin').lsp_references, { desc = "Go to references" })
+
+-- format
+vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, { desc = "Format buffer" })
