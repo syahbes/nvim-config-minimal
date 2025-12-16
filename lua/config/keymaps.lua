@@ -59,3 +59,5 @@ map({ "i", "n", "s" }, "<esc>", function()
   -- This allows telescope, insert mode exit, etc. to work
   return "<esc>"
 end, { expr = true, desc = "escape and clear hlsearch" })-- clear search highlight on escape
+vim.keymap.set('n', '<C-_>', 'gcc', { remap = true, desc = 'Toggle comment' })
+vim.keymap.set('v', '<C-_>', 'gc', { remap = true, desc = 'Toggle comment' })
