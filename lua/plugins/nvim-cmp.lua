@@ -87,6 +87,33 @@ return {
             },
             formatting = {
                 format = function(entry, vim_item)
+                    -- Truncate documentation if it contains base64 or is too long
+                    if entry.completion_item and entry.completion_item.documentation then
+                        local doc = entry.completion_item.documentation
+                        if type(doc) == "string" then
+                            -- Remove markdown image syntax
+                            doc = doc:gsub("!%[.-%]%(.-%)", "")
+                            -- Truncate at first base64 pattern or after 500 chars
+                            local base64_start = doc:find("data:image") or doc:find("base64")
+                            if base64_start then
+                                entry.completion_item.documentation = doc:sub(1, base64_start - 1)
+                            elseif #doc > 500 then
+                                entry.completion_item.documentation = doc:sub(1, 500) .. "..."
+                            else
+                                entry.completion_item.documentation = doc
+                            end
+                        elseif type(doc) == "table" and doc.value then
+                            -- Remove markdown image syntax
+                            doc.value = doc.value:gsub("!%[.-%]%(.-%)", "")
+                            local base64_start = doc.value:find("data:image") or doc.value:find("base64")
+                            if base64_start then
+                                doc.value = doc.value:sub(1, base64_start - 1)
+                            elseif #doc.value > 500 then
+                                doc.value = doc.value:sub(1, 500) .. "..."
+                            end
+                        end
+                    end
+                    
                     -- Show only the kind (Field, Function, etc.)
                     -- Remove the menu to reduce clutter
                     vim_item.menu = nil
