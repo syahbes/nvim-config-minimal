@@ -5,9 +5,12 @@ return {
     -- Enable offscreen match display
     vim.g.matchup_matchparen_offscreen = { method = "popup" }
     
-    -- Enable highlighting
+    -- Disable highlighting, only bold the tag
     vim.g.matchup_matchparen_enabled = 1
     vim.g.matchup_matchparen_deferred = 1
-    vim.g.matchup_matchparen_hi_surround_always = 1
+    vim.g.matchup_matchparen_hi_surround_always = 0
+    
+    -- Set highlight to bold only (no background color)
+    vim.api.nvim_set_hl(0, 'MatchParen', { bold = true })
   end,
 }
