@@ -24,8 +24,25 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnosti
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 
 -- Navigation
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "gd", require('telescope.builtin').lsp_definitions, { desc = "Go to definition" })
 vim.keymap.set("n", "gr", require('telescope.builtin').lsp_references, { desc = "Go to references" })
 
--- format
-vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, { desc = "Format buffer" })
+require("conform").setup({
+  formatters_by_ft = {
+    css = { "prettier" },
+    scss = { "prettier" },
+    less = { "prettier" },
+    javascript = { "prettier" },
+    javascriptreact = { "prettier" },
+    typescript = { "prettier" },
+    typescriptreact = { "prettier" },
+    json = { "prettier" },
+    html = { "prettier" },
+  },
+})
+
+-- Format with conform and LSP lsp fallback
+vim.keymap.set("n", "<leader>fm", function()
+  require("conform").format({ lsp_fallback = true })
+end, { desc = "Format buffer" })
