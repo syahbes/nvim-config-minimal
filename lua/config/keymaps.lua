@@ -32,7 +32,7 @@ map("i", "<C-s>", "<C-c>:w<CR>", { noremap = true, silent = true, desc = "Exit i
 
 -- Clipboard operations
 map("v", "<leader>y", '"+y', { desc = "Yank to clipboard" })
-map("i", "<C-b>", "<C-r>\"", { noremap = true, silent = true, desc = "Paste from yank buffer" })
+map("i", "<C-b>", '<C-r>"', { noremap = true, silent = true, desc = "Paste from yank buffer" })
 
 -- Black hole operations
 map("v", "x", '"_x', { desc = "Cut selection to black hole" })
@@ -45,19 +45,21 @@ map("x", "<leader>v", '"_dP', { desc = "Paste from clipboard without overwriting
 
 -- clear search highlight on escape (but keep default esc behavior)
 map({ "i", "n", "s" }, "<esc>", function()
-  -- Clear search highlight if there is one
-  if vim.v.hlsearch == 1 then
-    vim.cmd("noh")
-  end
-  
-  -- Stop snippet if in snippet mode
-  if lazyvim and lazyvim.cmp and lazyvim.cmp.actions then
-    lazyvim.cmp.actions.snippet_stop()
-  end
-  
-  -- Return the escape key to continue normal behavior
-  -- This allows telescope, insert mode exit, etc. to work
-  return "<esc>"
-end, { expr = true, desc = "escape and clear hlsearch" })-- clear search highlight on escape
-vim.keymap.set('n', '<C-_>', 'gcc', { remap = true, desc = 'Toggle comment' })
-vim.keymap.set('v', '<C-_>', 'gc', { remap = true, desc = 'Toggle comment' })
+	-- Clear search highlight if there is one
+	if vim.v.hlsearch == 1 then
+		vim.cmd("noh")
+	end
+
+	-- Stop snippet if in snippet mode
+	if lazyvim and lazyvim.cmp and lazyvim.cmp.actions then
+		lazyvim.cmp.actions.snippet_stop()
+	end
+
+	-- Return the escape key to continue normal behavior
+	-- This allows telescope, insert mode exit, etc. to work
+	return "<esc>"
+end, { expr = true, desc = "escape and clear hlsearch" }) -- clear search highlight on escape
+
+-- Comment
+vim.keymap.set("n", "<C-_>", "gcc", { remap = true, desc = "Toggle comment" })
+vim.keymap.set("v", "<C-_>", "gc", { remap = true, desc = "Toggle comment" })

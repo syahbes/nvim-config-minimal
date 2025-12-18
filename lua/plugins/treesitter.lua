@@ -1,20 +1,40 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  event = { "BufReadPost", "BufNewFile" },
-  cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
-  opts = {
-    indent = { enable = true },
-    highlight = { enable = true },
-    matchup = { enable = true },
-    ensure_installed = {
-      "bash", "c", "diff", "html", "javascript", "jsdoc", "json", "jsonc",
-      "lua", "luadoc", "luap", "markdown", "markdown_inline", "printf",
-      "python", "query", "regex", "toml", "tsx", "typescript", "vim",
-      "vimdoc", "xml", "yaml",
-    },
-  },
-  config = function(_, opts)
-    require("nvim-treesitter").setup(opts)
-  end,
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	event = { "BufReadPost", "BufNewFile" },
+	cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
+	opts = {
+		indent = { enable = true },
+		highlight = { enable = true },
+		matchup = { enable = true },
+		ensure_installed = {
+			"bash",
+			"c",
+			"diff",
+			"html",
+			"javascript",
+			"jsdoc",
+			"json",
+			"jsonc",
+			"lua",
+			"luadoc",
+			"luap",
+			"markdown",
+			"markdown_inline",
+			"printf",
+			"python",
+			"query",
+			"regex",
+			"toml",
+			"tsx",
+			"typescript",
+			"vim",
+			"vimdoc",
+			"xml",
+			"yaml",
+		},
+	},
+	config = function(_, opts)
+		require("nvim-treesitter").setup(opts)
+	end,
 }
