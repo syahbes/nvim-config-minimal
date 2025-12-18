@@ -1,11 +1,5 @@
 local map = vim.keymap.set
 
--- better up/down
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
@@ -38,10 +32,11 @@ map("i", "<C-b>", '<C-r>"', { noremap = true, silent = true, desc = "Paste from 
 map("v", "x", '"_x', { desc = "Cut selection to black hole" })
 map("i", "<C-x>", '<C-o>"_dd', { desc = "Cut whole line to black hole (insert)" })
 map("n", "<C-x>", '"_dd', { desc = "Cut whole line to black hole (normal)" })
--- Paste from yanked without overwriting it
-map("x", "<leader>p", '"_dP', { desc = "Paste over selection without losing yank" })
--- Paste from system clipboard without overwriting it (Visual Mode)
-map("x", "<leader>v", '"_dP', { desc = "Paste from clipboard without overwriting" })
+
+-- Paste from last yank (unnamed register) without overwriting it
+map("x", "<leader>p", '"_dP', { desc = "Paste from yank without losing it" })
+-- Paste from system clipboard (+ register) without overwriting it
+map("x", "<leader>v", '"_d"+P', { desc = "Paste from clipboard without overwriting" })
 
 -- clear search highlight on escape (but keep default esc behavior)
 map({ "i", "n", "s" }, "<esc>", function()

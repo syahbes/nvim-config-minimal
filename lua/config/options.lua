@@ -44,6 +44,3 @@ vim.opt.signcolumn = "yes"    -- Always show sign column
 -- Performance
 vim.opt.updatetime = 250      -- Faster completion
 vim.opt.timeoutlen = 300      -- Time to wait for mapped sequence
-
--- Clipboard
-vim.opt.clipboard = "unnamedplus"  -- Use system clipboard
