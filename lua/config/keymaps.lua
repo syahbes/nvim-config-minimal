@@ -20,7 +20,8 @@ map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
-map("n", "<leader>e", ":Ex<CR>", { desc = "Open Ex" })
+-- map("n", "<leader>e", ":Ex<CR>", { desc = "Open Ex" })
+map("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
 map("n", "<C-s>", ":w<CR>", { noremap = true, silent = true, desc = "Write (normal mode)" })
 map("i", "<C-s>", "<C-c>:w<CR>", { noremap = true, silent = true, desc = "Exit insert and write" })
 
