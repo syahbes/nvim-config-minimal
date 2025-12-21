@@ -77,6 +77,7 @@ return {
 
 		-- Your custom buttons with left alignment
 		dashboard.section.buttons.val = {
+      dashboard.button("t", "  Neo-tree", ":Neotree<CR>"),
 			dashboard.button("n", "  Open netrw", ":Explore<CR>"),
 			dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
 			dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
@@ -166,9 +167,7 @@ return {
 		-- Apply the configuration
 		alpha.setup(dashboard.config)
 	end,
-}
-
--- Set your custom header
+}-- Set your custom header
 -- small ASCII header – back-slashes doubled
 --dashboard.section.header.val = {
 --    "                                                     ",
