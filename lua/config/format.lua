@@ -14,6 +14,6 @@ require("conform").setup({
 })
 
 -- Format with conform and LSP lsp fallback
-vim.keymap.set("n", "<leader>fm", function()
+vim.keymap.set("n", "<C-m>", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "Format buffer" })

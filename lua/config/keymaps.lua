@@ -59,3 +59,4 @@ end, { expr = true, desc = "escape and clear hlsearch" }) -- clear search highli
 -- Comment
 vim.keymap.set("n", "<C-_>", "gcc", { remap = true, desc = "Toggle comment" })
 vim.keymap.set("v", "<C-_>", "gc", { remap = true, desc = "Toggle comment" })
+vim.keymap.set("n", "<leader>tc", ":Telescope colorscheme <CR>")

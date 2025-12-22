@@ -12,16 +12,15 @@ return {
         default_component_configs = {
           git_status = {
             symbols = {
-              -- Change these to your preferred icons
-              added     = "+",  -- or "A", "+", ""
-              modified  = "●",  -- or "M", "✹", "●"
-              deleted   = "-",  -- or "D", "−", ""
-              renamed   = "R",  -- or "R", "󰁕"
-              untracked = "U",  -- or "U", "★", "?"
-              ignored   = "I",  -- or "◌", "I"
-              unstaged  = "",  -- or "✗"
-              staged    = "S",  -- or "✓", "S"
-              conflict  = "!",  -- or "!", "═"
+              added     = "+",
+              modified  = "●",
+              deleted   = "-",
+              renamed   = "R",
+              untracked = "U",
+              ignored   = "I",
+              unstaged  = "",
+              staged    = "S",
+              conflict  = "!",
             }
           }
         },
@@ -31,6 +30,14 @@ return {
             hide_dotfiles = false,
             hide_gitignored = false,
             hide_hidden = false,
+          },
+          -- Add this to exclude from fuzzy finder
+          find_command = "fd",
+          find_args = {
+            fd = {
+              "--exclude", "node_modules",
+              "--exclude", ".git",
+            }
           },
         },
       })
