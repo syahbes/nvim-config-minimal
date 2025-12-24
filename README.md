@@ -21,6 +21,12 @@ npm install -g prettier
 npm install -g typescript typescript-language-server
 npm install -g vscode-langservers-extracted
 ```
+also instal syulua
+and
+run this
+:TSInstall tsx typescript html
+
+
 
 ### 3. Launch Neovim
 
