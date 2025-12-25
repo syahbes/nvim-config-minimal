@@ -21,7 +21,7 @@ npm install -g prettier
 npm install -g typescript typescript-language-server
 npm install -g vscode-langservers-extracted
 ```
-also instal syulua
+also install syulua
 and
 run this
 :TSInstall tsx typescript html
