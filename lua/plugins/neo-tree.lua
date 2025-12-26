@@ -9,6 +9,9 @@ return {
     },
     config = function()
       require("neo-tree").setup({
+        window = {
+          position = "right",
+        },
         default_component_configs = {
           git_status = {
             symbols = {
