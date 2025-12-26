@@ -11,6 +11,6 @@ return {
 		vim.g.matchup_matchparen_hi_surround_always = 0
 
 		-- Set highlight to bold only (no background color)
-		vim.api.nvim_set_hl(0, "MatchParen", { bold = true })
+		vim.api.nvim_set_hl(0, "MatchParen", { underline = true })
 	end,
 }

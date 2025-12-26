@@ -2,28 +2,22 @@ return {
   "e-q/okcolors.nvim",
   name = "okcolors",
   lazy = false,
-  priority = 1000, -- Highest priority to load as default
+  priority = 900, -- Lower priority, no longer default
   config = function()
-    -- Set okcolors as the default colorscheme
-    vim.cmd([[colorscheme okcolors]])
+    -- Don't set as default anymore - catppuccin is now default
     
-    -- Apply custom highlights after colorscheme loads
+    -- Apply custom highlights when okcolors is manually activated
     vim.api.nvim_create_autocmd("ColorScheme", {
       pattern = "okcolors",
       callback = function()
         local set_hl = vim.api.nvim_set_hl
         
-        -- Yellow cursor in normal mode (same as quiet theme)
+        -- Yellow cursor in normal mode
         set_hl(0, "Cursor", { fg = "NONE", bg = "#F4CD0D" })
         
         -- Remove background from matching tags/brackets
         set_hl(0, "MatchParen", { fg = "NONE", bg = "NONE", bold = true, underline = true })
       end,
     })
-    
-    -- Apply highlights immediately as well
-    local set_hl = vim.api.nvim_set_hl
-    set_hl(0, "Cursor", { fg = "NONE", bg = "#F4CD0D" })
-    set_hl(0, "MatchParen", { fg = "NONE", bg = "NONE", bold = true, underline = true })
   end,
 }
