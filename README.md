@@ -36,6 +36,7 @@ nvim
 
 Lazy.nvim will automatically install all plugins on first launch.
 
+
 ## Structure
 
 ```
