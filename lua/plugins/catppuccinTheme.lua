@@ -27,7 +27,8 @@ return {
     set_hl(0, "htmlTag", { fg = "#8fd9ce" })  -- Angle brackets < >
     
     -- Optional: Darker background
-    set_hl(0, "Normal", { bg = "#1e1e2e" })
+    -- set_hl(0, "Normal", { bg = "#1c1c1f" })
+    set_hl(0, "Normal", { bg = "#000000" })
     -- set_hl(0, "NormalNC", { bg = "#0a0a0a" })
     
     -- Highlight active row
@@ -48,7 +49,8 @@ return {
         set_hl(0, "tsxTag", { fg = "#8fd9ce" })
         set_hl(0, "htmlTag", { fg = "#8fd9ce" })
         
-        set_hl(0, "Normal", { bg = "#1e1e2e" })
+        -- set_hl(0, "Normal", { bg = "#1c1c1f" })
+        set_hl(0, "Normal", { bg = "#000000" })
         -- set_hl(0, "NormalNC", { bg = "#0a0a0a" })
         
         -- Reapply cursor line

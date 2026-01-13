@@ -40,7 +40,14 @@ vim.opt.wrap = false          -- Don't wrap lines
 vim.opt.scrolloff = 8         -- Keep 8 lines above/below cursor
 vim.opt.sidescrolloff = 8     -- Keep 8 columns left/right of cursor
 vim.opt.signcolumn = "yes"    -- Always show sign column
+vim.opt.whichwrap:append("<,>,[,]") -- go one line up when on char 0
 
 -- Performance
 vim.opt.updatetime = 250      -- Faster completion
 vim.opt.timeoutlen = 300      -- Time to wait for mapped sequence
+
+-- Netrw (file explorer)
+vim.g.netrw_list_hide = '^\\.\\./$,^\\./$'  -- Hide ../ and ./ entries
+vim.g.netrw_hide = 1                         -- Enable hiding
+
+

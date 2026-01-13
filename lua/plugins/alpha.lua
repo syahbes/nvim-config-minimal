@@ -78,7 +78,7 @@ return {
 		-- Your custom buttons with left alignment
 		dashboard.section.buttons.val = {
       dashboard.button("n", "  Open netrw", ":Explore<CR>"),
-      dashboard.button("t", "  Neo-tree", ":Neotree<CR>"),
+      -- dashboard.button("t", "  Neo-tree", ":Neotree<CR>"),
 			dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
 			dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
 			--	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
