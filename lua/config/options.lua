@@ -50,4 +50,10 @@ vim.opt.timeoutlen = 300      -- Time to wait for mapped sequence
 vim.g.netrw_list_hide = '^\\.\\./$,^\\./$'  -- Hide ../ and ./ entries
 vim.g.netrw_hide = 1                         -- Enable hiding
 
-
+-- dont comment new line when hit enter on a comment
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "typescript", "c", "cpp" },
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "r", "o" })
+  end,
+})
