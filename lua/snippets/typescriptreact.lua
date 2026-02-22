@@ -264,10 +264,60 @@ export default {};
 			}
 		)
 	),
+-- React Native Default Function (from filename)
+s(
+	"rndf",
+	fmt(
+		[[
+import {{ View, Text }} from 'react-native';
 
+export default function {}() {{
+  return (
+    <View>
+      <Text>{}</Text>
+    </View>
+  );
+}}
+]],
+		{
+			f(function()
+				local filename = vim.fn.expand("%:t:r")
+				if filename == "" then
+					return "Component"
+				end
+
+				-- Convert kebab-case or snake_case to PascalCase
+				local result = filename:gsub("[-_](%w)", function(c)
+					return c:upper()
+				end)
+
+				-- Capitalize first letter
+				result = result:sub(1, 1):upper() .. result:sub(2)
+
+				return result
+			end),
+			f(function()
+				local filename = vim.fn.expand("%:t:r")
+				if filename == "" then
+					return "Component"
+				end
+
+				-- Convert kebab-case or snake_case to PascalCase
+				local result = filename:gsub("[-_](%w)", function(c)
+					return c:upper()
+				end)
+
+				-- Capitalize first letter
+				result = result:sub(1, 1):upper() .. result:sub(2)
+
+				return result
+			end),
+		}
+	)
+),
 	-- React Native Default Function (from filename)
 	s(
-		"rndf",
+		"SSSSrndf",
 		fmt(
 			[[
 import {{ View, Text, StyleSheet }} from 'react-native';

@@ -7,8 +7,8 @@ map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
 -- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+--map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+--map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
@@ -60,3 +60,11 @@ end, { expr = true, desc = "escape and clear hlsearch" }) -- clear search highli
 vim.keymap.set("n", "<C-_>", "gcc", { remap = true, desc = "Toggle comment" })
 vim.keymap.set("v", "<C-_>", "gc", { remap = true, desc = "Toggle comment" })
 vim.keymap.set("n", "<leader>tc", ":Telescope colorscheme <CR>")
+
+-- Normal mode - move 5 lines (replaces window resize)
+map("n", "<C-Down>", "5j", { desc = "Move cursor down 5 lines (normal mode)" })
+map("n", "<C-Up>", "5k", { desc = "Move cursor up 5 lines (normal mode)" })
+
+-- Insert mode - move 5 lines
+map("i", "<C-Down>", "<C-o>5j", { desc = "Move cursor down 5 lines (insert mode)" })
+map("i", "<C-Up>", "<C-o>5k", { desc = "Move cursor up 5 lines (insert mode)" })
