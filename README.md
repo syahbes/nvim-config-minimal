@@ -76,3 +76,27 @@ Lazy.nvim will automatically install all plugins on first launch.
 - Node.js and npm
 - Git
 - fd-find (for Telescope)
+
+
+
+
+on a new machine (mac iOS) with bun installed
+i had to run this
+
+# LSP servers
+bun install -g typescript-language-server typescript
+bun install -g vscode-langservers-extracted
+bun install -g @tailwindcss/language-server
+
+# Neovim node integration
+bun install -g neovim
+
+# Telescope tools
+brew install ripgrep fd
+
+# Formatters
+brew install stylua
+bun install -g prettier
+
+
+i saw that i need to after that i done :checkhelth
